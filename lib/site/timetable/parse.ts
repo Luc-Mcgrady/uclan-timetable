@@ -12,15 +12,15 @@ interface Empty {
 	cellType: "empty"
 }
 
-type Cell = (Lesson | Empty) & {span: number}
+export type CellData = (Lesson | Empty) & {span: number}
 
-export interface Day {
+export interface DayData {
 	day: string,
 	date: string,
-	cells: Cell[]
+	cells: CellData[]
 }
 
-function parseDay(row: Element) : Day {
+function parseDay(row: Element) : DayData {
 	
 	const headerdom = row.querySelector("th")
 	
@@ -29,7 +29,7 @@ function parseDay(row: Element) : Day {
 
 	const lessondom = row.querySelectorAll("td")
 
-	let cells: Cell[] = []
+	let cells: CellData[] = []
 	let emptys = 0;
 	for (const lesson of lessondom) {
 

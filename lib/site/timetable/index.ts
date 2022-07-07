@@ -1,8 +1,8 @@
 import fetchTimetableSite, { TimetableRequest } from "./fetch"
-import parseTimetableHtml, { Day } from "./parse"
+import parseTimetableHtml, { DayData } from "./parse"
 
 export interface TimetableData {
-	days: Day[]
+	days: DayData[]
 }
 
 export default async function getTimetable(req: TimetableRequest) {

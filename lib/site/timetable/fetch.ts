@@ -1,5 +1,4 @@
 import axios from "axios";
-import basicAuth from "lib/auth/basicAuth";
 
 const defaultHeaders = {
   Accept: 'text/html',
