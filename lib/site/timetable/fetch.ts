@@ -23,14 +23,14 @@ const defaultParams = {
   //StartDate: Now
 }
 
-export default async function fetchTimetableSite(email: string, password: string) {
+export default async function fetchTimetableSite(email: string, auth: string) {
     
     const username = email.split('@')[0]
 
     let now = new Date(Date.now());
 
     const requestHeaders = {...defaultHeaders,
-      Authorization: `Basic ${basicAuth(email, password)}`
+      Authorization: auth
     }
 
     const requestParams = {...defaultParams,

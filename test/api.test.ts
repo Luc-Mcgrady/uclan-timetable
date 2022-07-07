@@ -1,3 +1,5 @@
+import axios from "axios";
+import basicAuth from "lib/auth/basicAuth";
 import getTimetable, { Timetable } from "lib/site/timetable";
 
 describe("API", ()=>{
@@ -23,7 +25,8 @@ describe("API", ()=>{
     })
 
     it("Fetches data from the uni website", async ()=>{
-        parsed = await getTimetable(email, password);
+        const req = await axios("http://localhost:3000/api/timetable", {headers: {email: email, Authorization: basicAuth(email, password)}})
+        parsed = req.data
     })
 
     test("The data is formatted correctly", () => {
