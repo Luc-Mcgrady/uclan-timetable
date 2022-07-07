@@ -1,5 +1,7 @@
 .week {
 
+	background-color: grey;
+
 	display: grid;
 
 	grid-template-columns: 7rem repeat(36, 3rem);
@@ -14,12 +16,13 @@
 
 .lesson {
 	overflow: hidden;
-	background-color: cyan;
+	background-color: rgba(0, 255, 255, 0.445);
 
 	transition: background-color;
+	overflow-wrap: break-word;
 
 	&:hover {
-		background-color: aquamarine;
+		background-color: rgb(127, 255, 212);
 		z-index: 10;
 	}
 }
