@@ -11,18 +11,33 @@ const defaultHeaders = {
   // Authorization: 'Basic Nope'
 }
 
-const options = {
+const defaultOptions = {
   method: 'GET',
   url: 'https://apps.uclan.ac.uk/TimeTables/SpanWeek/WkMatrix',
-  params: {entId: 'LMcgrady', entType: 'Student', startDate: '2021-10-11'},
+  //params: {entId: 'LMcgrady', startDate: '2021-10-11'},
 };
+
+const defaultParams = {
+  //entID: Username
+  entType: 'Student',
+  //StartDate: Now
+}
 
 export default async function fetchTimetableSite(email: string, password: string) {
     
     const username = email.split('@')[0]
 
-    const requestHeaders = {...defaultHeaders, Authorization: `Basic ${basicAuth(email, password)}`}
+    let now = new Date(Date.now());
 
-    await axios.request({...options, headers: requestHeaders})
+    const requestHeaders = {...defaultHeaders,
+        Authorization: `Basic ${basicAuth(email, password)}`
+      }
+
+    const requestParams = {...defaultParams,
+      entID: username,
+      StartDate: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
+    }
+
+    await axios.request({...defaultOptions, headers: requestHeaders, params: requestParams})
 
 }
