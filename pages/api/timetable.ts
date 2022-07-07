@@ -23,5 +23,11 @@ export default async function handler(
   }
 
 
-  res.status(200).json(await getTimetable({email, auth, date}))
+  getTimetable({email, auth, date})
+    .then(res.status(200).json) // Return the gotten data
+    .catch(data => {
+      res.setHeader("Content-Type", "text/html")
+      res.status(400).end(`<h1>Error from UCLAN while scraping:</h1> ${data.response.data}`)
+    })
+  
 }
