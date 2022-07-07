@@ -8,6 +8,7 @@
 	grid-template-rows: repeat(5, 5rem);
 
 	gap: 2px;
+	border: black solid 2px;
 
 	& > * {
 		box-shadow: 0 0 0 2px;
