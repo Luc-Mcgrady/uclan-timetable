@@ -1,4 +1,4 @@
-import fetchTimetableSite from "lib/site/timetable";
+import fetchTimetableSite from "lib/site/fetch";
 
 describe("API", ()=>{
     
