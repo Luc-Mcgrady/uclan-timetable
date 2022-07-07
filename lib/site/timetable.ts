@@ -15,9 +15,9 @@ const options = {
   }
 };
 
-export async function fetchTimetableSite(email: string, password: string) {
+export default async function fetchTimetableSite(email: string, password: string) {
     
     const username = email.split('@')[0]
     await axios.request({...options})
-    
+
 }
