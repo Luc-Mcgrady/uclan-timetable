@@ -1,4 +1,6 @@
-interface Lesson {
+import jsdom from "jsdom"
+
+export interface Lesson {
 	cellType: "lesson"
 	name: string
 	timeframe: string
@@ -12,13 +14,11 @@ interface Empty {
 
 type Cell = (Lesson | Empty) & {span: number}
 
-interface Day {
+export interface Day {
 	day: string,
 	date: string,
 	cells: Cell[]
 }
-
-const parser = new DOMParser
 
 function parseDay(row: Element) : Day {
 	
@@ -55,12 +55,19 @@ function parseDay(row: Element) : Day {
 		}
 	}
 	
+	if (emptys) { // If there are reamaining empty cells
+		cells.push({
+			cellType: "empty",
+			span: emptys
+		})
+	}
+
 	return {day, date, cells}
 }
 
 export default function parseTimetableHtml(html: string) {
-	const dom = parser.parseFromString(html, "text/html")
+	const dom = new jsdom.JSDOM(html)
 
-	const days = [...dom.querySelectorAll("tr.otherDay")].map(parseDay)
+	const days = [...dom.window.document.querySelectorAll("tr.otherDay")].map(parseDay)
 	return days;
 }

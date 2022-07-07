@@ -1,16 +1,18 @@
-import fetchTimetableSite from "lib/site/timetable/fetch";
+import getTimetable, { Timetable } from "lib/site/timetable";
 
 describe("API", ()=>{
     
     let password : string;
     let email : string;
 
+    let parsed: Timetable;
+
     beforeAll(()=>{
 
         /*
         //.env.test.local
-        PASSWORD=...
         EMAIL=...
+        PASSWORD=...
         */
 
         expect(process.env.USERNAME).toBeTruthy()
@@ -20,9 +22,14 @@ describe("API", ()=>{
 
     })
 
-    it("Fetches html from the uni website", async ()=>{
-        await fetchTimetableSite(email, password);
+    it("Fetches data from the uni website", async ()=>{
+        parsed = await getTimetable(email, password);
     })
 
-    it.todo("Parses the html into json")
+    test("The data is formatted correctly", () => {
+
+        expect(parsed.days).toBeDefined()
+        expect(parsed.days[0].cells[0]).toHaveProperty("cellType")
+
+    })
 })
