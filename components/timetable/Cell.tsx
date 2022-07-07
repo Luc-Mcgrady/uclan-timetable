@@ -1,14 +1,18 @@
 import { CellData } from "lib/site/timetable/parse";
 import { FunctionComponent } from "react";
+import style from "./timetable.module.scss";
 
-type CellProps = CellData
+type LessonProps = {
+	row: number
+	data: CellData
+}
  
-const Cell: FunctionComponent<CellProps> = (props) => {
+const Lesson: FunctionComponent<LessonProps> = ({data,row}) => {
 	return ( 
 	<>
-		<div style={{}}>{props.cellType}</div>
+		<div className={style.lesson} style={{gridColumnStart: data.spanBegin+1, gridColumnEnd: data.spanEnd+1, gridRowStart: row+1}}>{data.name}</div>
 	</>
 	);
 }
  
-export default Cell;
+export default Lesson;

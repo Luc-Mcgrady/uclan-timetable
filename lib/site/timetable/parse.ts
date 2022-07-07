@@ -1,18 +1,16 @@
 import jsdom from "jsdom"
 
 export interface Lesson {
-	cellType: "lesson"
 	name: string
 	timeframe: string
 	room: string
 	lessonType: string
+
+	spanBegin: number // The way its scraped these each represent 1/36 of a day
+	spanEnd: number
 }
 
-interface Empty {
-	cellType: "empty"
-}
-
-export type CellData = (Lesson | Empty) & {span: number}
+export type CellData = Lesson
 
 export interface DayData {
 	day: string,
@@ -30,37 +28,26 @@ function parseDay(row: Element) : DayData {
 	const lessondom = row.querySelectorAll("td")
 
 	let cells: CellData[] = []
-	let emptys = 0;
+	let index = 1;
 	for (const lesson of lessondom) {
 
-		if (lesson.classList.contains("TimeTableEmptyCell")) { // If its an empty cell increment the count of empty cells
-			emptys++
+		if (lesson.classList.contains("TimeTableEmptyCell")) { // If its an empty cell only increment the index
+			index++
 		}
 		else { // If its not an empty cell
-			if (emptys) { // If there is a backlog of empty cells
-				cells.push({
-					cellType: "empty",
-					span: emptys
-				})
-				emptys = 0;
-			}
+
+			const span = lesson.colSpan;
 
 			cells.push({
-				cellType: "lesson",
-				span: lesson.colSpan,
 				timeframe: lesson.querySelector("strong:nth-child(1)")?.textContent as string,
 				name: lesson.querySelector("span:nth-child(3)")?.textContent?.trim() as string,
 				room: lesson.querySelector("strong:nth-child(5)")?.textContent as string,
 				lessonType: lesson.querySelector("strong:nth-child(8)")?.textContent as string,
+
+				spanBegin: index,
+				spanEnd: index + span,
 			})
 		}
-	}
-	
-	if (emptys) { // If there are reamaining empty cells
-		cells.push({
-			cellType: "empty",
-			span: emptys
-		})
 	}
 
 	return {day, date, cells}

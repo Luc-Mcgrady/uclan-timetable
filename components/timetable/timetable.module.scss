@@ -2,7 +2,29 @@
 
 	display: grid;
 
-	grid-template-columns: 10rem repeat(36, 1rem);
-	grid-template-rows: repeat(7, 5rem);
+	grid-template-columns: 7rem repeat(36, 3rem);
+	grid-template-rows: repeat(5, 5rem);
 
+	gap: 2px;
+
+	& > * {
+		box-shadow: 0 0 0 2px;
+	}
+}
+
+.lesson {
+	overflow: hidden;
+	background-color: cyan;
+
+	transition: background-color;
+
+	&:hover {
+		background-color: aquamarine;
+		z-index: 10;
+	}
+}
+
+.header {
+	background-color: blueviolet;
+	grid-column-start: 1;
 }

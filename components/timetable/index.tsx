@@ -9,7 +9,7 @@ const Timetable: FunctionComponent<TimetableProps> = (props) => {
 
 	return ( 
 	<div className={style.week}>
-		{props.days.map(day=><Day key={day.date} {...day}/>)}
+		{props.days.map((day,i)=><Day row={i} key={day.date} data={day}/>)}
 	</div>
 	)
 
