@@ -1,8 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import getTimetable, { Timetable } from 'lib/site/timetable'
+import getTimetable, { TimetableData } from 'lib/site/timetable'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = Timetable
+type Data = TimetableData
 
 export default function handler(
   req: NextApiRequest,

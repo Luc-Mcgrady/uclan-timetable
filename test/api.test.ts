@@ -1,13 +1,13 @@
 import axios from "axios";
 import basicAuth from "lib/auth/basicAuth";
-import getTimetable, { Timetable } from "lib/site/timetable";
+import getTimetable, { TimetableData } from "lib/site/timetable";
 
 describe("API", ()=>{
     
     let password : string;
     let email : string;
 
-    let parsed: Timetable;
+    let parsed: TimetableData;
 
     beforeAll(()=>{
 

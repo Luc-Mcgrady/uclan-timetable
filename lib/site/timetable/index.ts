@@ -1,7 +1,7 @@
 import fetchTimetableSite, { TimetableRequest } from "./fetch"
 import parseTimetableHtml, { Day } from "./parse"
 
-export interface Timetable {
+export interface TimetableData {
 	days: Day[]
 }
 
