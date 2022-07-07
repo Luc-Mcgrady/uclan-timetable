@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 
 type Data = Timetable
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -22,12 +22,13 @@ export default async function handler(
     return
   }
 
-
-  getTimetable({email, auth, date})
-    .then(res.status(200).json) // Return the gotten data
+  return getTimetable({email, auth, date})
+    .then(data => {
+      res.status(200).json(data)
+    }) // Return the gotten data
     .catch(data => {
       res.setHeader("Content-Type", "text/html")
       res.status(400).end(`<h1>Error from UCLAN while scraping:</h1> ${data.response.data}`)
     })
-  
+
 }
