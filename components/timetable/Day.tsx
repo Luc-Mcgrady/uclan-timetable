@@ -1,6 +1,6 @@
 import { DayData } from "lib/site/timetable/parse";
 import { FunctionComponent } from "react";
-import Lesson from "./cell";
+import Lesson from "./Lesson";
 import style from "./timetable.module.scss";
 
 type DayProps = {
