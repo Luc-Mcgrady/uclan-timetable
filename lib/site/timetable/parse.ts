@@ -47,6 +47,8 @@ function parseDay(row: Element) : DayData {
 				spanBegin: index,
 				spanEnd: index + span,
 			})
+
+			index += span
 		}
 	}
 

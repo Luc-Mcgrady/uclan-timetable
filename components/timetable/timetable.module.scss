@@ -7,6 +7,8 @@
 	grid-template-columns: 7rem repeat(36, 3rem);
 	grid-template-rows: repeat(5, 5rem);
 
+	overflow: auto;
+
 	gap: 2px;
 	border: black solid 2px;
 
