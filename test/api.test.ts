@@ -1,4 +1,4 @@
-import fetchTimetableSite from "lib/site/fetch";
+import fetchTimetableSite from "lib/site/timetable/fetch";
 
 describe("API", ()=>{
     
@@ -22,7 +22,6 @@ describe("API", ()=>{
 
     it("Fetches html from the uni website", async ()=>{
         await fetchTimetableSite(email, password);
-
     })
 
     it.todo("Parses the html into json")

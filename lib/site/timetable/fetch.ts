@@ -30,14 +30,15 @@ export default async function fetchTimetableSite(email: string, password: string
     let now = new Date(Date.now());
 
     const requestHeaders = {...defaultHeaders,
-        Authorization: `Basic ${basicAuth(email, password)}`
-      }
+      Authorization: `Basic ${basicAuth(email, password)}`
+    }
 
     const requestParams = {...defaultParams,
       entID: username,
       StartDate: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
     }
 
-    await axios.request({...defaultOptions, headers: requestHeaders, params: requestParams})
+    const responce = await axios.request({...defaultOptions, headers: requestHeaders, params: requestParams})
+    return responce.data
 
 }
