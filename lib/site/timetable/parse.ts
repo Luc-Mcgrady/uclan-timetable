@@ -42,11 +42,12 @@ function parseDay(row: Element) : Day {
 					cellType: "empty",
 					span: emptys
 				})
+				emptys = 0;
 			}
 
 			cells.push({
 				cellType: "lesson",
-				span: lesson.rowSpan,
+				span: lesson.colSpan,
 				timeframe: lesson.querySelector("strong:nth-child(1)")?.textContent as string,
 				name: lesson.querySelector("span:nth-child(3)")?.textContent as string,
 				room: lesson.querySelector("strong:nth-child(5)")?.textContent as string,
