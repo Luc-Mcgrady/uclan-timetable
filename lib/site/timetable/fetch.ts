@@ -23,7 +23,13 @@ const defaultParams = {
   //StartDate: Now
 }
 
-export default async function fetchTimetableSite(email: string, auth: string) {
+export interface TimetableRequest {
+  email: string,
+  auth: string,
+  date?: string,
+}
+
+export default async function fetchTimetableSite({email, auth, date} : TimetableRequest) {
     
     const username = email.split('@')[0]
 
