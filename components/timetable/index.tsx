@@ -4,7 +4,9 @@ import Day from "./Day";
 import style from "./timetable.module.scss";
 
 type TimetableProps = TimetableData
- 
+
+
+
 const Timetable: FunctionComponent<TimetableProps> = (props) => {
 
 	return ( 

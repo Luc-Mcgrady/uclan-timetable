@@ -8,11 +8,15 @@ type DayProps = {
 	row: number
 }
  
+const yOffset = 2
+
 const Day: FunctionComponent<DayProps> = ({data, row}) => {
 	return ( 
 	<>
-		<div className={style.header} style={{gridRowStart: row+1}}>{data.date}</div>
-		{data.cells.map(data=><Lesson key={data.name} row={row} data={data}/>)}
+		<div className={style.header} style={{gridRowStart: row+yOffset}}>
+			<div>{data.day}</div>
+		</div>
+		{data.cells.map(data=><Lesson key={data.name} row={row+yOffset-1} data={data}/>)}
 	</> 
 	);
 }

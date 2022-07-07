@@ -5,7 +5,7 @@
 	display: grid;
 
 	grid-template-columns: 7rem repeat(36, 3rem);
-	grid-template-rows: repeat(5, 5rem);
+	grid-template-rows: 2rem repeat(5, 7rem);
 
 	overflow: auto;
 
@@ -13,12 +13,12 @@
 	border: black solid 2px;
 
 	& > * {
-		box-shadow: 0 0 0 2px;
+		box-shadow: 0 0 0 2px black;
 	}
 }
 
 .lesson {
-	overflow: hidden;
+	overflow-y: auto;
 	background-color: rgba(0, 255, 255, 0.445);
 
 	transition: background-color;
@@ -31,6 +31,12 @@
 }
 
 .header {
-	background-color: blueviolet;
+	background-color: #392b54;
 	grid-column-start: 1;
+
+	font-weight: 500;
+	color: white;
+	display: flex;
+
+	justify-content: center;
 }

@@ -10,7 +10,10 @@ type LessonProps = {
 const Lesson: FunctionComponent<LessonProps> = ({data,row}) => {
 	return ( 
 	<>
-		<div className={style.lesson} style={{gridColumnStart: data.spanBegin+1, gridColumnEnd: data.spanEnd+1, gridRowStart: row+1}}>{data.name}</div>
+		<div className={style.lesson} style={{gridColumnStart: data.spanBegin+1, gridColumnEnd: data.spanEnd+1, gridRowStart: row+1}}>
+			<div>{data.timeframe}</div>
+			<div>{data.name}</div>
+		</div>
 	</>
 	);
 }
