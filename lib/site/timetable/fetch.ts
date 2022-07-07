@@ -33,7 +33,10 @@ export default async function fetchTimetableSite({email, auth, date} : Timetable
     
     const username = email.split('@')[0]
 
-    let now = new Date(Date.now());
+    if (!date) {
+      const now = new Date(Date.now());
+      date = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`
+    }
 
     const requestHeaders = {...defaultHeaders,
       Authorization: auth
@@ -41,7 +44,7 @@ export default async function fetchTimetableSite({email, auth, date} : Timetable
 
     const requestParams = {...defaultParams,
       entID: username,
-      StartDate: `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`,
+      StartDate: date,
     }
 
     const responce = await axios.request({...defaultOptions, headers: requestHeaders, params: requestParams})

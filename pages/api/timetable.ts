@@ -23,5 +23,5 @@ export default async function handler(
   }
 
 
-  res.status(200).json(await getTimetable({email, auth}))
+  res.status(200).json(await getTimetable({email, auth, date}))
 }
