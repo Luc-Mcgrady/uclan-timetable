@@ -1,42 +1,71 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
-import basicAuth from "lib/auth/basicAuth";
 import useLoader from "lib/hooks/Loader";
-import { FunctionComponent } from "react";
+import { FunctionComponent, useId, useState } from "react";
+import nookies from "nookies"
 
-async function fetchData () {
+type TimetableLoaderProps = {
+	email: string,
+	password: string,
+	date: string
+}
+
+function fetchData ({email, password, date}: TimetableLoaderProps) {
 	const testConfig : AxiosRequestConfig = {
 		method: "PUT",
-		headers: {
-			Authorization: basicAuth(process.env.NEXT_PUBLIC_EMAIL as string, process.env.NEXT_PUBLIC_PASSWORD as string)
-		},
 		data: {
-			email: process.env.NEXT_PUBLIC_EMAIL as string,
-			date: "2021-10-04"
+			email: email,
+			password: password,
+			date: date
 		}
 	}
 
-	const response = await axios("/api/timetable", testConfig)
-	return response.data
+	async function inner() {
+		const response = await axios("/api/timetable", testConfig)
+		return response.data
+	}
+
+	return inner
 }
 
-interface TimetablePageProps {
-	
-}
+const TimetableLoader: FunctionComponent<TimetableLoaderProps> = (props) => {
 
-const TimetablePage: FunctionComponent<TimetablePageProps> = () => {
-
-	const {data, status} = useLoader(["test"], fetchData);
+	const {data, status} = useLoader(["timetable", ...Object.values(props)], fetchData(props));
 
 	if (status) {
 		return <>{status}</>
 	}
 
 	return ( 
-	<>
 		<Timetable {...data}/>
-	</> 
 	);
+
+}
+
+const TimetablePage: FunctionComponent<{}> = () => {
+
+	const {email, password} = nookies.get()
+
+	if (!email || !password) {
+		return <>Your not logged in</>
+	}
+	
+	const [date, setDate] = useState("");
+
+	const dateLabel = useId();
+
+	return (
+		<>
+			<form action="">
+				<h1 id={dateLabel}>Timetable for: {email}</h1>
+				<input aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{setDate(e.target.value)}}/>
+			</form>
+			
+			<div>
+				<TimetableLoader {...{email, password, date}}/>
+			</div>
+		</>
+	)
 }
  
 export default TimetablePage;
