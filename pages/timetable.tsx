@@ -75,6 +75,10 @@ const TimetablePage: FunctionComponent<{}> = () => {
 			<div>
 				<TimetableLoader {...{email, auth, date}}/>
 			</div>
+
+			<div>
+				{"We're all still stuck with the sites loading times though"}
+			</div>
 		</>
 	)
 }

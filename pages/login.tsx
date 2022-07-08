@@ -29,6 +29,8 @@ const Login: FunctionComponent<LoginProps> = () => {
 			<input type="password" ref={password}/>
 			<input type="submit" />
 		</form>
+
+		<h5>Your login is stored in your cookies so you never have to do it again. {"(on this device)"}</h5>
 	</> );
 }
  
