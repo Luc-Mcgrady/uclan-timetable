@@ -12,7 +12,7 @@ const Timeline: FunctionComponent<TimelineProps> = ({startHour, endHour, hourWid
 	
 	return ( 
 		<>
-			{_.range(0, endHour-startHour).map(i=>
+			{_.range(0, 1+endHour-startHour).map(i=>
 				<TimeHeading key={i} position={i} width={hourWidth} hour={i+startHour} offset={2}/>
 			)}
 		</>

@@ -17,6 +17,7 @@ const Home: NextPage = () => {
         <li>{"The site asks you to log in every 5 seconds"}</li>
         <li>{"The site asks you to log in through a weird little popup box instead of an actual website."}</li>
         <li>{"The table morphs depending on how many lessons you have making it hard to tell whats where."}</li>
+        <li>{"The lesson details are all kind of just in a blob."}</li>
       </ul>
     </>
   )
