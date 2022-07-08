@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
 import basicAuth from "lib/auth/basicAuth";
+import useLoader from "lib/hooks/Loader";
 import { FunctionComponent } from "react";
-import { useQuery } from "react-query";
 
 async function fetchData () {
 	const testConfig : AxiosRequestConfig = {
@@ -25,14 +25,11 @@ interface TimetablePageProps {
 }
 
 const TimetablePage: FunctionComponent<TimetablePageProps> = () => {
-	
-	const {isLoading, isError, error, data} = useQuery(["timetable","test"], fetchData)
-	
-	if (isLoading) {
-		return <>Loading</>
-	}
-	else if (isError) {
-		return <>{(error as any).toString()}</>
+
+	const {data, status} = useLoader(["test"], fetchData);
+
+	if (status) {
+		return <>{status}</>
 	}
 
 	return ( 
