@@ -1,0 +1,23 @@
+nav.navBar {
+	display: flex;
+	border-bottom: 2px grey solid;
+	width: 100%;
+	flex-wrap: wrap;
+
+	.navBarLink {
+		transition: background-color 0.2s, color 0.2s;
+		
+		text-decoration: none;
+		color: black;
+		font-weight: 500;
+
+		padding: 1em;
+		cursor: pointer;
+
+		&:hover {
+			background-color: rgb(110, 110, 110);
+			color: white;
+		}
+
+	}
+}
