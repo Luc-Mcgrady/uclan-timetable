@@ -30,13 +30,24 @@
 	}
 }
 
-.header {
+@mixin heading {
 	background-color: #392b54;
+	color: white;
+}
+
+.header {
+
+	@include heading;
 	grid-column-start: 1;
 
 	font-weight: 500;
-	color: white;
 	display: flex;
 
 	justify-content: center;
+}
+
+.time {
+	@include heading;
+
+	grid-row-start: 1;
 }
