@@ -1,9 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
 import useLoader from "lib/hooks/Loader";
+import Link from "next/link";
+import nookies from "nookies";
 import { FunctionComponent, useEffect, useId, useRef, useState } from "react";
-import nookies from "nookies"
-import formatDate from "lib/formatDate";
 
 type TimetableLoaderProps = {
 	email: string,
@@ -65,7 +65,7 @@ const TimetablePage: FunctionComponent<{}> = () => {
 	const dateInput = useRef<HTMLInputElement>(null)
 
 	if (!email || !auth) {
-		return <>Your not logged in</>
+		return <>Your not <Link href="/login">logged in</Link></>
 	}
 
 	return (
