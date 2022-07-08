@@ -36,7 +36,10 @@ const TimetableLoader: FunctionComponent<TimetableLoaderProps> = (props) => {
 	const {data, status} = useLoader(["timetable", ...Object.values(props)], fetchData(props));
 
 	if (status) {
-		return <>{status}</>
+		return <>
+			{status}
+			<Timetable days={[]}/>
+		</>
 	}
 
 	return ( 
