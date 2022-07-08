@@ -1,21 +1,23 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
 import useLoader from "lib/hooks/Loader";
-import { FunctionComponent, useId, useState } from "react";
+import { FunctionComponent, useEffect, useId, useState } from "react";
 import nookies from "nookies"
 
 type TimetableLoaderProps = {
 	email: string,
-	password: string,
+	auth: string,
 	date: string
 }
 
-function fetchData ({email, password, date}: TimetableLoaderProps) {
+function fetchData ({email, auth, date}: TimetableLoaderProps) {
 	const testConfig : AxiosRequestConfig = {
 		method: "PUT",
+		headers: {
+			Authorization: auth
+		},
 		data: {
 			email: email,
-			password: password,
 			date: date
 		}
 	}
@@ -44,25 +46,31 @@ const TimetableLoader: FunctionComponent<TimetableLoaderProps> = (props) => {
 
 const TimetablePage: FunctionComponent<{}> = () => {
 
-	const {email, password} = nookies.get()
+	const [email, setEmail] = useState("");
+	const [auth, setAuth] = useState("");
+	const [date, setDate] = useState("");
+	
+	const dateLabel = useId();
 
-	if (!email || !password) {
+	useEffect(() => {
+		const cookies = nookies.get(null)
+		setEmail(cookies.email)
+		setAuth(cookies.auth)
+	}, [])
+	
+	if (!email || !auth) {
 		return <>Your not logged in</>
 	}
-	
-	const [date, setDate] = useState("");
-
-	const dateLabel = useId();
 
 	return (
 		<>
-			<form action="">
+			<form>
 				<h1 id={dateLabel}>Timetable for: {email}</h1>
 				<input aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{setDate(e.target.value)}}/>
 			</form>
 			
 			<div>
-				<TimetableLoader {...{email, password, date}}/>
+				<TimetableLoader {...{email, auth, date}}/>
 			</div>
 		</>
 	)

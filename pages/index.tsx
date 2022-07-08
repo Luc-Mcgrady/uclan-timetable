@@ -1,19 +1,23 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
 
 const Home: NextPage = () => {
   return (
     <>
-      <Link href={"/timetable"}>WIP heres the timetable</Link>
+      <h1>Your timetable but less awful</h1>
 
-      <form onSubmit={(e)=>{
-			e.preventDefault()
-		}}>
-      <label htmlFor="">Username: </label>
-			<input type="text"/>
-      <label htmlFor="">Password: </label>
-			<input type="password"/>
-		</form>
+      <p>
+        {"Does UClan's timetable look bad, feel awful, and taste like shit? Well fret no more."} <br />
+        {"This timetable looks ok, feels ok and tastes like nothing."}
+      </p>
+
+      <p>
+        {"I made this to address a series of issues"}
+      </p>
+      <ul>
+        <li>{"The site asks you to log in every 5 seconds"}</li>
+        <li>{"The site asks you to log in through a weird little popup box instead of an actual website."}</li>
+        <li>{"The table morphs depending on how many lessons you have making it hard to tell whats where."}</li>
+      </ul>
     </>
   )
 }
