@@ -1,4 +1,5 @@
 import axios from "axios";
+import formatDate from "../../formatDate";
 
 const defaultHeaders = {
   Accept: 'text/html',
@@ -34,7 +35,7 @@ export default async function fetchTimetableSite({email, auth, date} : Timetable
 
     if (!date) {
       const now = new Date(Date.now());
-      date = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`
+      date = formatDate(now)
     }
 
     const requestHeaders = {...defaultHeaders,
