@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
 import useLoader from "lib/hooks/Loader";
-import { FunctionComponent, useEffect, useId, useState } from "react";
+import { FunctionComponent, useEffect, useId, useRef, useState } from "react";
 import nookies from "nookies"
+import formatDate from "lib/formatDate";
 
 type TimetableLoaderProps = {
 	email: string,
@@ -58,6 +59,8 @@ const TimetablePage: FunctionComponent<{}> = () => {
 		setAuth(cookies.auth)
 	}, [])
 	
+	const dateInput = useRef<HTMLInputElement>(null)
+
 	if (!email || !auth) {
 		return <>Your not logged in</>
 	}
@@ -66,7 +69,7 @@ const TimetablePage: FunctionComponent<{}> = () => {
 		<>
 			<form>
 				<h1 id={dateLabel}>Timetable for: {email}</h1>
-				<input aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{setDate(e.target.value)}}/>
+				<input defaultValue={(new Date).toISOString().substring(0,10)} aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{setDate(e.target.value)}}/>
 			</form>
 			
 			<div>
