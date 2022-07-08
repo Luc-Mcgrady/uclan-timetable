@@ -16,7 +16,7 @@ const Day: FunctionComponent<DayProps> = ({data, row}) => {
 		<div className={style.header} style={{gridRowStart: row+yOffset}}>
 			<div>{data.day}</div>
 		</div>
-		{data.cells.map(data=><Lesson key={data.name} row={row+yOffset-1} data={data}/>)}
+		{data.cells.map(data=><Lesson key={`${data.name}${data.timeframe}`} row={row+yOffset-1} data={data}/>)}
 	</> 
 	);
 }

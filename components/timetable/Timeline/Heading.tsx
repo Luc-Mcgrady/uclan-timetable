@@ -13,7 +13,7 @@ const TimeHeading: FunctionComponent<TimeHeadingProps> = ({position, width, hour
 	const truePos = position * width + offset
 
 	return ( 
-		<div key={position} className={style.time} style={{gridColumnStart: truePos, gridColumnEnd: truePos+width}}>
+		<div className={style.time} style={{gridColumnStart: truePos, gridColumnEnd: truePos+width}}>
 			{`${hour.toString().padStart(2,"0")}:00`}
 		</div> );
 }
