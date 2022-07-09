@@ -2,8 +2,6 @@ import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
 import useLoader from "lib/hooks/Loader";
 import { FunctionComponent, useEffect, useId, useRef, useState } from "react";
-import nookies from "nookies"
-import formatDate from "lib/formatDate";
 
 type TimetableLoaderProps = {
 	email: string,
@@ -54,9 +52,11 @@ const TimetablePage: FunctionComponent<{}> = () => {
 	const dateLabel = useId();
 
 	useEffect(() => {
-		const cookies = nookies.get(null)
-		setEmail(cookies.email)
-		setAuth(cookies.auth)
+		const email = window.localStorage.getItem("email") 
+		const auth = window.localStorage.getItem("auth") 
+
+		setEmail(email ? email : "")
+		setAuth(auth ? auth : "")
 	}, [])
 	
 	const dateInput = useRef<HTMLInputElement>(null)

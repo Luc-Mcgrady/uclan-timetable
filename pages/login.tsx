@@ -1,6 +1,5 @@
-import { FunctionComponent, useRef } from "react";
-import nookies from "nookies"
 import basicAuth from "lib/auth/basicAuth";
+import { FunctionComponent, useRef } from "react";
 
 interface LoginProps {
 	
@@ -17,8 +16,8 @@ const Login: FunctionComponent<LoginProps> = () => {
 
 		<form
 		onSubmit={(e)=>{
-			nookies.set(null, "email", username.current?.value as string)
-			nookies.set(null, "auth", basicAuth(username.current?.value as string, password.current?.value as string))
+			window.localStorage.setItem("email", username.current?.value as string)
+			window.localStorage.setItem("auth", basicAuth(username.current?.value as string, password.current?.value as string))
 
 			window.location.replace("/timetable")
 			e.preventDefault()
