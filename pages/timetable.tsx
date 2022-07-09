@@ -84,7 +84,7 @@ const TimetablePage: FunctionComponent<{}> = () => {
 			</div>
 
 			<div>
-				{"We're all still stuck with the sites loading times though"}
+				{"We're all still stuck with the sites loading times. Though this site does cache the timetable locally for a day."}
 			</div>
 		</>
 	)
