@@ -23,17 +23,10 @@ function fetchData ({email, auth, date}: TimetableLoaderProps) {
 	
 	async function inner() {
 		
-		const auth_date = `timetable_${auth}_${date}`
-		const cache = window.localStorage.getItem(auth_date)
-		if (cache)
-			return JSON.parse(cache)
-
 		const response = await axios("/api/timetable", testConfig)
 		const data = response.data
 
-		window.localStorage.setItem(auth_date, JSON.stringify(data))
-
-		return response
+		return data
 	}
 
 	return inner
