@@ -34,6 +34,8 @@ noIdea && noIdea[0]
 			</details>
 : 			<li>{type}</li>
 }
+
+			<li>{data.group}</li>
 		</div>
 	</>
 	);
