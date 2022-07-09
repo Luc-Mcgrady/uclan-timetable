@@ -3,6 +3,8 @@ import DatePicker from "components/DatePicker";
 import Timetable from "components/timetable";
 import formatDate from "lib/formatDate";
 import useLoader from "lib/hooks/Loader";
+import Link from "next/link";
+import nookies from "nookies";
 import { FunctionComponent, useEffect, useId, useRef, useState } from "react";
 
 type TimetableLoaderProps = {
@@ -39,7 +41,10 @@ const TimetableLoader: FunctionComponent<TimetableLoaderProps> = (props) => {
 	const {data, status} = useLoader(["timetable", ...Object.values(props)], fetchData(props));
 
 	if (status) {
-		return <>{status}</>
+		return <>
+			<h1>{status}</h1>
+			<Timetable days={[]}/>
+		</>
 	}
 
 	return ( 
@@ -65,7 +70,7 @@ const TimetablePage: FunctionComponent<{}> = () => {
 	}, [])
 
 	if (!email || !auth) {
-		return <>Your not logged in</>
+		return <>Your not <Link href="/login">logged in</Link></>
 	}
 
 	return (

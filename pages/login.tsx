@@ -30,6 +30,7 @@ const Login: FunctionComponent<LoginProps> = () => {
 		</form>
 
 		<h5>Your login is stored in your cookies so you never have to do it again. {"(on this device)"}</h5>
+		<h5>If you ever feel compelled to log out empty the 2 boxes and hit submit, Im too lazy to make it into a button.</h5>
 	</> );
 }
  
