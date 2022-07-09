@@ -41,7 +41,7 @@ const TimetableLoader: FunctionComponent<TimetableLoaderProps> = (props) => {
 
 	if (status) {
 		return <>
-			<h1 style={{color: "white", position: "absolute"}}>{status}</h1>
+			<h1 style={{color: "white", position: "absolute", left:"1em"}}>{status}</h1>
 			<Timetable days={[]}/>
 		</>
 	}
