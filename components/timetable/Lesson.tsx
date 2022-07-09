@@ -11,6 +11,7 @@ const Lesson: FunctionComponent<LessonProps> = ({data,row}) => {
 
 	const [roomSummary, ...roomDetails] = data.room.split("-")
 	const [module, ...moduleDetails] = data.name.split("-")
+	const [type, ...noIdea] = data.lessonType.split(" ")
 
 	return ( 
 	<>
@@ -24,6 +25,15 @@ const Lesson: FunctionComponent<LessonProps> = ({data,row}) => {
 				<summary>{module}</summary>
 				{moduleDetails.join("-")}
 			</details>
+			
+{
+noIdea && noIdea[0]
+? 			<details>
+				<summary>{type}</summary>
+				{ noIdea.join(" ")}
+			</details>
+: 			<li>{type}</li>
+}
 		</div>
 	</>
 	);
