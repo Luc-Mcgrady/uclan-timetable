@@ -5,7 +5,13 @@
 .chevron {
 	display: inline;
 	font-weight: 900;
-	margin: 1rem;
+	padding: 1rem;
 
+	cursor: pointer;
 	user-select: none;
+	
+	transition: color 0.2s;
+	&:hover {
+		color: grey;
+	}
 }
