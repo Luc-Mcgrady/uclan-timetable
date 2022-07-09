@@ -8,11 +8,22 @@ type LessonProps = {
 }
  
 const Lesson: FunctionComponent<LessonProps> = ({data,row}) => {
+
+	const [roomSummary, ...roomDetails] = data.room.split("-")
+	const [module, ...moduleDetails] = data.name.split("-")
+
 	return ( 
 	<>
 		<div className={style.lesson} style={{gridColumnStart: data.spanBegin+1, gridColumnEnd: data.spanEnd+1, gridRowStart: row+1}}>
-			<div>{data.timeframe}</div>
-			<div>{data.name}</div>
+			<li>{data.timeframe}</li>
+			<details>
+				<summary>{roomSummary}</summary>
+				<div>{roomDetails.join("-")}</div>
+			</details>
+			<details>
+				<summary>{module}</summary>
+				{moduleDetails.join("-")}
+			</details>
 		</div>
 	</>
 	);

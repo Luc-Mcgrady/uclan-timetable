@@ -5,7 +5,7 @@
 	display: grid;
 
 	grid-template-columns: 7rem repeat(36, 3rem);
-	grid-template-rows: 2rem repeat(5, 7rem);
+	grid-template-rows: 2rem repeat(5, 8rem);
 
 	overflow: auto;
 
@@ -24,9 +24,15 @@
 	transition: background-color 0.5s;
 	overflow-wrap: break-word;
 
+	padding: 0.5rem;
+
 	&:hover {
 		background-color: white;
 		z-index: 10;
+	}
+
+	> div {
+		border-bottom: rgb(83, 83, 83);
 	}
 }
 
@@ -41,7 +47,6 @@
 	grid-column-start: 1;
 
 	font-weight: 500;
-	display: flex;
 
 	justify-content: center;
 }
