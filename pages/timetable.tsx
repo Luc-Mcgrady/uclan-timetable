@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
+import DatePicker from "components/DatePicker";
 import Timetable from "components/timetable";
 import formatDate from "lib/formatDate";
 import useLoader from "lib/hooks/Loader";
@@ -51,7 +52,7 @@ const TimetablePage: FunctionComponent<{}> = () => {
 
 	const [email, setEmail] = useState("");
 	const [auth, setAuth] = useState("");
-	const [date, setDate] = useState("");
+	const [date, setDate] = useState(new Date);
 	
 	const dateLabel = useId();
 
@@ -71,20 +72,11 @@ const TimetablePage: FunctionComponent<{}> = () => {
 		<>
 			<form>
 				<h1 id={dateLabel}>Timetable for: {email}</h1>
-				<input defaultValue={(new Date).toISOString().substring(0,10)} aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{
-					
-					let date = e.target.valueAsDate;
-					date = date ? date : new Date 
-
-					date.setDate(date.getDate() - (date.getDay() + 6) % 7) // Gets the last monday
-					// https://stackoverflow.com/questions/35088088/javascript-for-getting-the-previous-monday
-
-					setDate(formatDate(date))
-				}}/>
+				<DatePicker date={date} dateUpdate={setDate}/>
 			</form>
 			
 			<div>
-				<TimetableLoader {...{email, auth, date}}/>
+				<TimetableLoader {...{email, auth,date: formatDate(date)}}/>
 			</div>
 
 			<div>
