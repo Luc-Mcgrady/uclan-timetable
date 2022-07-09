@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     
     <Head>
       <title>UCLAN Timetable {"(unofficial)"}</title>
+      <meta name='description' content={"Does UClan's timetable look ok, feel bad, and taste like awful? Well fret no more."}/>
     </Head>
     
     <NavBar/>

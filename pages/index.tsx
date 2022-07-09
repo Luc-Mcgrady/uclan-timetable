@@ -7,7 +7,7 @@ const Home: NextPage = () => {
       <h1>Your timetable but less awful</h1>
 
       <p>
-        {"Does UClan's timetable look ok, feel awful, and taste like shit? Well fret no more."} <br />
+        {"Does UClan's timetable look ok, feel bad, and taste like awful? Well fret no more."} <br />
         {"This timetable looks ok, feels ok and tastes like nothing."}
       </p>
 
