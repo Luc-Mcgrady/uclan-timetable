@@ -1,6 +1,6 @@
-import formatDate from "lib/formatDate";
 import { FunctionComponent, SetStateAction } from "react";
 import Chevron from "./Chevron";
+import style from "./picker.module.scss";
 
 export type DateCallback = React.Dispatch<SetStateAction<Date>>
 
@@ -15,7 +15,7 @@ const DatePicker: FunctionComponent<DatePickerProps> = ({date, dateUpdate: updat
 	return ( 
 		<>
 			<Chevron setDate={updateDate} amount={-7}>{'<'}</Chevron>
-			<input value={(date).toISOString().substring(0,10)} type={"date"} onChange={(e)=>{
+			<input className={style.calander} value={(date).toISOString().substring(0,10)} type={"date"} onChange={(e)=>{
 				
 				let date = e.target.valueAsDate;
 				date = date ? date : new Date 
