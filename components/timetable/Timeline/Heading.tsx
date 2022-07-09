@@ -1,3 +1,4 @@
+import { padDate } from "lib/formatDate";
 import { FunctionComponent } from "react";
 import style from "../timetable.module.scss";
 
@@ -14,7 +15,7 @@ const TimeHeading: FunctionComponent<TimeHeadingProps> = ({position, width, hour
 
 	return ( 
 		<div className={style.time} style={{gridColumnStart: truePos, gridColumnEnd: truePos+width}}>
-			{`${hour.toString().padStart(2,"0")}:00`}
+			{`${padDate(hour)}:00`}
 		</div> );
 }
  
