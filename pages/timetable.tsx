@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 import Timetable from "components/timetable";
+import formatDate from "lib/formatDate";
 import useLoader from "lib/hooks/Loader";
 import { FunctionComponent, useEffect, useId, useRef, useState } from "react";
 
@@ -61,8 +62,6 @@ const TimetablePage: FunctionComponent<{}> = () => {
 		setEmail(email ? email : "")
 		setAuth(auth ? auth : "")
 	}, [])
-	
-	const dateInput = useRef<HTMLInputElement>(null)
 
 	if (!email || !auth) {
 		return <>Your not logged in</>
@@ -72,7 +71,16 @@ const TimetablePage: FunctionComponent<{}> = () => {
 		<>
 			<form>
 				<h1 id={dateLabel}>Timetable for: {email}</h1>
-				<input defaultValue={(new Date).toISOString().substring(0,10)} aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{setDate(e.target.value)}}/>
+				<input defaultValue={(new Date).toISOString().substring(0,10)} aria-labelledby={dateLabel} type={"date"} onChange={(e)=>{
+					
+					let date = e.target.valueAsDate;
+					date = date ? date : new Date 
+
+					date.setDate(date.getDate() - (date.getDay() + 6) % 7) // Gets the last monday
+					// https://stackoverflow.com/questions/35088088/javascript-for-getting-the-previous-monday
+
+					setDate(formatDate(date))
+				}}/>
 			</form>
 			
 			<div>
