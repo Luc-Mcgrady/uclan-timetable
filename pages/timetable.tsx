@@ -4,8 +4,7 @@ import Timetable from "components/timetable";
 import formatDate from "lib/formatDate";
 import useLoader from "lib/hooks/Loader";
 import Link from "next/link";
-import nookies from "nookies";
-import { FunctionComponent, useEffect, useId, useRef, useState } from "react";
+import { FunctionComponent, useEffect, useId, useState } from "react";
 
 type TimetableLoaderProps = {
 	email: string,
