@@ -11,7 +11,7 @@ const NavBar: FunctionComponent<NavBarProps> = () => {
 	<nav className={style.navBar}>
 		<NavBarLink href="/" label="Home"/>
 		<NavBarLink href="/login" label="Login"/>
-		<NavBarLink href="/timetable" label="Timeline"/>
+		<NavBarLink href="/timetable" label="Timetable"/>
 	</nav>
 	);
 }
