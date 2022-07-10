@@ -16,7 +16,13 @@ const Login: FunctionComponent<LoginProps> = () => {
 
 		<form
 		onSubmit={(e)=>{
-			window.localStorage.setItem("email", username.current?.value as string)
+
+			let name = username.current?.value as string
+			if (!name.includes("@")) {
+				name += "@uclan.ac.uk"
+			}
+
+			window.localStorage.setItem("email",name)
 			window.localStorage.setItem("auth", basicAuth(username.current?.value as string, password.current?.value as string))
 
 			window.location.replace("/timetable")
