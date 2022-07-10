@@ -20,6 +20,7 @@ const Home: NextPage = () => {
         <li>{"The lesson details are all kind of just in a blob."}</li>
         <li>{"You have to reload the page whenever you want to change the week. (Which wouldent matter if the loadtime wasnt ages)"}</li>
         <li>{"The site asks you to log in every 5 seconds (they might have actually fixed this)"}</li>
+        <li>{"They made 2 extra versions of the timetable that load fast but as a tradeoff dont work; at all."}</li>
       </ul>
 
       <p>
