@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   <QueryClientProvider client={client}>
     
     <Head>
-      <title>UCLAN Timetable {"(unofficial)"}</title>
+      <title>UCLAN Timetable (unofficial)</title>
     </Head>
     
     <NavBar/>
