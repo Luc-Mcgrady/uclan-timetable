@@ -1,4 +1,5 @@
 import { useQuery } from "react-query"
+import Cache from "lib/cache"
 
 type Key = string | string[]
 
@@ -11,20 +12,23 @@ function stringifyKey(key: Key) {
 
 }
 
+const loaderCache = new Cache("loader")
+
 export default function useLoader<T>(key: Key, dataFetcher: ()=>Promise<T>) : {status: string, data: undefined} | {data: T, status: undefined} {
 	
-	const cacheKey = "loader_" + stringifyKey(key)
+	const cacheKey = stringifyKey(key)
 
 	const withCache = async () => {
 
-		const cache = window.localStorage.getItem(cacheKey)
+		const cached = loaderCache.Data[cacheKey]
 
-		if (!cache) {
-			return await dataFetcher()
+		if (!cached) {
+			const data = await dataFetcher()
+			loaderCache.setKey(cacheKey, data)
+			return data
 		}
 		else {
-			window.localStorage.setItem(cacheKey, JSON.stringify(data))
-			return JSON.parse(cache)
+			return JSON.parse(cached)
 		}
 	}
 
