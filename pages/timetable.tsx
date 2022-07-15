@@ -35,9 +35,9 @@ function fetchData ({email, auth, date}: TimetableLoaderProps) {
 	return inner
 }
 
-const TimetableLoader: FunctionComponent<TimetableLoaderProps> = (props) => {
+const TimetableLoader: FunctionComponent<TimetableLoaderProps> = ({...props}) => {
 
-	const {data, status} = useLoader(["timetable", ...Object.values(props)], fetchData(props));
+	const {data, status} = useLoader(["timetable", props.auth, props.date], fetchData(props));
 
 	if (status) {
 		return <>
