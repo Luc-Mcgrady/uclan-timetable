@@ -1,5 +1,5 @@
 import Cache from "lib/cache"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 
 type Key = string | string[]
 
@@ -15,7 +15,9 @@ function stringifyKey(key: Key) {
 export default function useLoader<T>(key: Key, dataFetcher: ()=>Promise<T>) : {status: string, data: undefined} | {data: T, status: undefined} {
 	
 	const loaderCache = useMemo(()=>new Cache<T>("loader"), [])
+	const cacheKeyMutable = useRef("")
 	const cacheKey = stringifyKey(key)
+	cacheKeyMutable.current = cacheKey
 
 	const [result, setResult] = useState(undefined);
 	const [error, setError] = useState(undefined);
@@ -39,7 +41,7 @@ export default function useLoader<T>(key: Key, dataFetcher: ()=>Promise<T>) : {s
 		setResult(undefined)
 		setError(undefined)
 
-		withCache().then(setResult).catch(setError)
+		withCache().then(()=>setResult(loaderCache.Data[cacheKeyMutable.current])).catch(setError)
 
 		}
 		, [cacheKey]
