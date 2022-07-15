@@ -62,7 +62,13 @@ function parseDay(row: Element) : DayData {
 
 export default function parseTimetableHtml(html: string) {
 	const dom = new jsdom.JSDOM(html)
+	const virtualDoc = dom.window.document
 
-	const days = [...dom.window.document.querySelectorAll("tr.otherDay")].map(parseDay)
+	const days = [
+		...virtualDoc.querySelectorAll("tr.otherDay"), 
+		...virtualDoc.querySelectorAll("tr.currentDay")
+		]
+		.map(parseDay)
+
 	return days;
 }
