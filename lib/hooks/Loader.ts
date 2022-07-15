@@ -1,7 +1,5 @@
-import { useQuery } from "react-query"
 import Cache from "lib/cache"
-import { useMemo } from "react"
-import { TimetableData } from "lib/site/timetable"
+import { useEffect, useMemo, useState } from "react"
 
 type Key = string | string[]
 
@@ -14,38 +12,47 @@ function stringifyKey(key: Key) {
 
 }
 
-
 export default function useLoader<T>(key: Key, dataFetcher: ()=>Promise<T>) : {status: string, data: undefined} | {data: T, status: undefined} {
 	
 	const loaderCache = useMemo(()=>new Cache<T>("loader"), [])
 	const cacheKey = stringifyKey(key)
 
-	const withCache = async () => {
+	const [result, setResult] = useState(undefined);
+	const [error, setError] = useState(undefined);
 
-		const cached = loaderCache.Data[cacheKey]
+	useEffect(() => {
 
-		if (!cached) {
-			const data = await dataFetcher()
-			loaderCache.setKey(cacheKey, data)
-			return data
+		const withCache = async () => {
+
+			const cached = loaderCache.Data[cacheKey]
+
+			if (!cached) {
+				const data = await dataFetcher()
+				loaderCache.setKey(cacheKey, data)
+				return data
+			}
+			else {
+				return cached
+			}
 		}
-		else {
-			return cached
-		}
-	}
 
-	const {isLoading, isError, isIdle, error, data} = useQuery(key, withCache)
+		setResult(undefined)
+		setError(undefined)
+
+		withCache().then(setResult).catch(setError)
+
+		}
+		, [cacheKey]
+	)
 	
-	if (isLoading) {
-		return {status: "Loading", data: undefined}
-	}
-	else if (isError) {
+	
+	if (error !== undefined) {
 		return {status: (error as any).toString(), data: undefined}
 	}
-	else if (isIdle) {
-		return {status: "Idle", data: undefined}
+	else if (result === undefined) {
+		return {status: "Loading", data: undefined}
 	}
 	else {
-		return {data: data, status: undefined}
+		return {data: result, status: undefined}
 	}
 }
