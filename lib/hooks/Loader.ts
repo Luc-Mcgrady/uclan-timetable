@@ -1,5 +1,7 @@
 import { useQuery } from "react-query"
 import Cache from "lib/cache"
+import { useMemo } from "react"
+import { TimetableData } from "lib/site/timetable"
 
 type Key = string | string[]
 
@@ -12,10 +14,10 @@ function stringifyKey(key: Key) {
 
 }
 
-const loaderCache = new Cache("loader")
 
 export default function useLoader<T>(key: Key, dataFetcher: ()=>Promise<T>) : {status: string, data: undefined} | {data: T, status: undefined} {
 	
+	const loaderCache = useMemo(()=>new Cache<T>("loader"), [])
 	const cacheKey = stringifyKey(key)
 
 	const withCache = async () => {
@@ -28,7 +30,7 @@ export default function useLoader<T>(key: Key, dataFetcher: ()=>Promise<T>) : {s
 			return data
 		}
 		else {
-			return JSON.parse(cached)
+			return cached
 		}
 	}
 
