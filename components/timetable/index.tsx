@@ -8,12 +8,12 @@ type TimetableProps = TimetableData
 
 
 
-const Timetable: FunctionComponent<TimetableProps> = (props) => {
+const Timetable: FunctionComponent<TimetableProps> = ({days}) => {
 
 	return ( 
-	<div className={style.week}>
+	<div className={style.week} style={{gridTemplateRows: `2rem repeat(${days.length}, 8rem)`}}>
 		<Timeline startHour={9} endHour={17}/>
-		{props.days.map((day,i)=><Day row={i} key={day.date} data={day}/>)}
+		{days.map((day,i)=><Day row={i} key={day.date} data={day}/>)}
 	</div>
 	)
 
