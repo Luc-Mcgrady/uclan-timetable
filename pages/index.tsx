@@ -1,3 +1,5 @@
+import Timetable from 'components/timetable'
+import ExampleData from 'lib/fixtures/example'
 import type { NextPage } from 'next'
 import Link from 'next/link'
 
@@ -30,6 +32,12 @@ const Home: NextPage = () => {
       <footer>
         This site is open source and on <Link href="https://github.com/Luc-mcgrady/uclan-timetable">Github</Link>
       </footer>
+
+      <div>
+        <br/>
+        Example timetable:
+        <Timetable {...ExampleData}></Timetable>
+      </div>
     </>
   )
 }
