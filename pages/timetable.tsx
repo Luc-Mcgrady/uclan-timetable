@@ -86,6 +86,17 @@ const TimetablePage: FunctionComponent<{}> = () => {
 			<div>
 				{"We're all still stuck with the sites loading times. Though this site does cache the timetable locally for a day."}
 			</div>
+			<br />
+			<div>
+				{"Use this button if you suspect something has been changed on your timetable (end of year, new module etc.)"} <br />
+				<button onClick={()=>{
+					window.localStorage.removeItem("loader")
+				}}>
+					Clear Cache
+				</button>
+				<br/>
+				{"I accept no responsibility if you miss lessons because you were using this cached version of their website"}
+			</div>
 		</>
 	)
 }
