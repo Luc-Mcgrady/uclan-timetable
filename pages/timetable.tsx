@@ -3,6 +3,7 @@ import DatePicker from "components/DatePicker";
 import Timetable from "components/timetable";
 import formatDate from "lib/formatDate";
 import useLoader from "lib/hooks/Loader";
+import _ from "lodash";
 import Link from "next/link";
 import { FunctionComponent, useEffect, useId, useState } from "react";
 
@@ -40,10 +41,7 @@ const TimetableLoader: FunctionComponent<TimetableLoaderProps> = ({...props}) =>
 	const {data, status} = useLoader(["timetable", props.auth, props.date], fetchData(props));
 
 	if (status) {
-		return <>
-			<Timetable days={[]}/>
-			<h1 style={{color: "black", left:"1em"}}>{status}</h1>
-		</>
+		return <Timetable days={_.times(5, i=>({cells: [], date: status, day: i.toString()}))}/>
 	}
 
 	return ( 
