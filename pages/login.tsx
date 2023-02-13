@@ -23,12 +23,13 @@ const Login: FunctionComponent<LoginProps> = () => {
 			}
 
 			window.localStorage.setItem("email",name)
-			window.localStorage.setItem("auth", basicAuth(username.current?.value as string, password.current?.value as string))
+			window.localStorage.setItem("auth", basicAuth(name, password.current?.value as string))
 
 			window.location.replace("/timetable")
 			e.preventDefault()
 		}}>
-			<label htmlFor="">Username: </label>
+			<h2>Enter your UClan credentials here.</h2>
+			<label htmlFor="">Username/Email: </label>
 			<input type="text" ref={username}/>
 			<label htmlFor="">Password: </label>
 			<input type="password" ref={password}/>
